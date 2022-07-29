@@ -1,6 +1,8 @@
 <?php
 session_start();
 require "config.php";
+require "common.php";
+
 $titleError = '';
 $descError = '';
 $title = '';
@@ -68,6 +70,7 @@ if(isset($_POST['post_update'])){
                 </div>
               </div>
               <form action="" method="post">
+                <input type="hidden" name="csrf" value="<?php echo $_SESSION['csrf'] ?>">
                 <input type="hidden" name="id" value="<?php echo $result[0]['id'] ?>">
               <div class="card-body">
                    <div class="form-group mb-3">
@@ -75,7 +78,6 @@ if(isset($_POST['post_update'])){
                      <input type="text"
                        name="title"
                        class="form-control
-                       #title မှာ အလွတ်ပေးလိုက်ရင် "The title field is required!" အဲ့စာကို titleError ထဲ ထည့်ပေးလိုက်တယ်။ အဲ့တော့ titleError က "" empty နဲ့ မညီတော့ဘူး။ အဲ့တော့ if(titleError != '') နဲ့ စစ်လို့ရသွားပီ။
                        <?php if($titleError != '') : ?>
                          is-invalid
                        <?php endif ?>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "config.php";
+require "common.php";
 
 $sql = "SELECT * FROM posts ORDER BY id DESC";
 $pdostatement = $pdo->prepare($sql);
@@ -65,8 +66,8 @@ $result = $pdostatement->fetchAll();
                   ?>
                       <tr>
                         <td><?php echo $i ?></td>
-                        <td><?php echo $value['title'] ?></td>
-                        <td><?php echo $value['description'] ?></td>
+                        <td><?php echo escape($value['title']); ?></td>
+                        <td><?php echo escape($value['description']); ?></td>
                         <td><?php echo date('Y-m-d',strtotime($value['created_at'])) ?></td>
                         <td>
                           <a href="post-edit.php?postId=<?php echo $value['id'] ?>"

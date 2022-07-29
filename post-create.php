@@ -1,6 +1,8 @@
 <?php
 session_start();
 require "config.php";
+require "common.php";
+
 $titleError = '';
 $descError = '';
 $title = '';
@@ -63,6 +65,8 @@ if(isset($_POST['post_create'])){
                 </div>
               </div>
               <form action="post-create.php" method="post">
+                <input type="hidden" name="csrf" value="<?php echo $_SESSION['csrf'] ?>">
+
               <div class="card-body">
                    <div class="form-group mb-3">
                      <label>Title</label>
